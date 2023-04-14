@@ -24,12 +24,25 @@ fn main() {
     }
     println!("imperative style: {}", acc);
 
-    // Functional approach
-    let sum_of_squared_odd_numbers: u32 =
-        (1..5).map(|n| n * n)                             // All natural numbers squared
+    let _x = [(1 as i32),2,3,4];
+    let _y = [1,2,3,4 as i32];
+    let _z = [_x,_x].concat();
+
+    // Functional approach with range
+    let sum_of_squared_odd_numbers : u32 =
+        (1..5 as u32).map(|n| n * n)                             // All natural numbers squared
              .take_while(|&n_squared| n_squared < upper) // Below upper limit
              .filter(|&n_squared| is_odd(n_squared))     // That are odd
              .sum();                                     // Sum them
-    println!("functional style: {}", sum_of_squared_odd_numbers);
+    println!("functional style from range: {}", sum_of_squared_odd_numbers);
+                                                         //
+    // Functional approach with array
+    let sum_of_squared_odd_numbers_first : u32 =
+        [1,2,3,4 as u32].iter().map(|n| n * n)                             // All natural numbers squared
+             .take_while(|&n_squared| n_squared < upper) // Below upper limit
+             .filter(|&n_squared| is_odd(n_squared))     // That are odd
+             .sum();                                     // Sum them
+                                                         //
+    println!("functional style from array: {}", sum_of_squared_odd_numbers_first);
 }
 
